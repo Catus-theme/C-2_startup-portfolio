@@ -4,7 +4,6 @@ const app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 app.use('/public' , express.static(__dirname + '/public'));
-app.engine('html', require('ejs').renderFile);
 
 app.get('/' , (req, res) => {
   res.render('index.pug');

@@ -13,6 +13,7 @@
   $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
       var target = $(this.hash);
+      console.log('hi');
       target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
       if (target.length) {
         $('html, body').animate({
@@ -22,6 +23,20 @@
       }
     }
   });
+  $('a.js-scroll-left-trigger[href*="#"]:not([href="#"])').click(function() {
+    console.log('hello world');
+    if(location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+      var target = $(this.hash); 
+      console.log(target);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      if (target.length) {
+        $('.about-wrap').animate({
+          scrollWidth: target.offset().left
+        }, 1000, "easeInOutExpo");
+        return false;
+      }
+    }
+  })
 
   // Closes responsive menu when a scroll trigger link is clicked
   $('#sidebar-wrapper .js-scroll-trigger').click(function() {

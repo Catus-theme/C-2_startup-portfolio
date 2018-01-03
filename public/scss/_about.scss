@@ -1,0 +1,11 @@
+.about-wrap {
+  display: flex;
+  white-space: nowrap;
+  overflow-x: auto;
+  .container {
+    display: inline-block;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+  }
+}

@@ -6,24 +6,25 @@ var cleanCSS = require('gulp-clean-css');
 var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
 var pkg = require('./package.json');
+var del = require('del');
 
 // Set the banner content
-var banner = ['/*!\n',
-  ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
-  ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
-  ' * Licensed under <%= pkg.license %> (https://github.com/BlackrockDigital/<%= pkg.name %>/blob/master/LICENSE)\n',
-  ' */\n',
-  ''
-].join('');
+// var banner = ['/*!\n',
+//   ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
+//   ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
+//   ' * Licensed under <%= pkg.license %> (https://github.com/BlackrockDigital/<%= pkg.name %>/blob/master/LICENSE)\n',
+//   ' */\n',
+//   ''
+// ].join('');
 
 // Compiles SCSS files from /scss into /css
 gulp.task('sass', function() {
   return gulp.src('public/scss/stylish-portfolio.scss')
     .pipe(sass())
-    .pipe(header(banner, {
-      pkg: pkg
-    }))
-    .pipe(gulp.dest('css'))
+    // .pipe(header(banner, {
+    //   pkg: pkg
+    // }))
+    .pipe(gulp.dest('public/css'))
     .pipe(browserSync.reload({
       stream: true
     }))
@@ -38,7 +39,7 @@ gulp.task('minify-css', ['sass'], function() {
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('css'))
+    .pipe(gulp.dest('public/css'))
     .pipe(browserSync.reload({
       stream: true
     }))
@@ -48,13 +49,13 @@ gulp.task('minify-css', ['sass'], function() {
 gulp.task('minify-js', function() {
   return gulp.src('public/js/stylish-portfolio.js')
     .pipe(uglify())
-    .pipe(header(banner, {
-      pkg: pkg
-    }))
+    // .pipe(header(banner, {
+    //   pkg: pkg
+    // }))
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('js'))
+    .pipe(gulp.dest('public/js'))
     .pipe(browserSync.reload({
       stream: true
     }))
@@ -90,9 +91,11 @@ gulp.task('copy', function() {
   gulp.src(['node_modules/simple-line-icons/*/*'])
     .pipe(gulp.dest('public/vendor/simple-line-icons'))
 })
-
+gulp.task('clean' , function() {
+  return del.sync('public/css/*.css');
+})
 // Default task
-gulp.task('default', ['sass', 'minify-css', 'minify-js', 'copy']);
+gulp.task('default', ['clean','sass', 'minify-css', 'minify-js', 'copy' , 'dev']);
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {
@@ -105,10 +108,10 @@ gulp.task('browserSync', function() {
 
 // Dev task with browserSync
 gulp.task('dev', ['browserSync', 'sass', 'minify-css', 'minify-js'], function() {
-  gulp.watch('scss/*.scss', ['sass']);
-  gulp.watch('css/*.css', ['minify-css']);
-  gulp.watch('js/*.js', ['minify-js']);
+  gulp.watch('public/scss/*.scss', ['sass']);
+  gulp.watch('public/css/*.css', ['minify-css']);
+  gulp.watch('public/js/*.js', ['minify-js']);
   // Reloads the browser whenever HTML or JS files change
-  gulp.watch('*.html', browserSync.reload);
-  gulp.watch('js/**/*.js', browserSync.reload);
+  gulp.watch('views/*.pug', browserSync.reload);
+  gulp.watch('public/js/**/*.js', browserSync.reload);
 });

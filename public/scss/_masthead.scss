@@ -6,7 +6,7 @@
   height: auto;
   padding-top: 8rem;
   padding-bottom: 8rem;
-  background: linear-gradient(90deg, fade-out($white, 0.9) 0%, fade-out($white, 0.9) 100%), url('../img/bg-masthead.jpg');
+  background: linear-gradient(90deg, fade-out($white, 0.9) 0%, fade-out($white, 0.3) 100%), url('../img/bg-masthead.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -14,11 +14,15 @@
     font-size: 4rem;
     margin: 0;
     padding: 0;
+    text-shadow: 2px 4px 4px white;
+  }
+  h3 em {
+    text-shadow: 1px 1px 2px white;
   }
   @media (min-width: 992px) {
     height: 100vh;
     h1 {
-      font-size: 5.5rem;
+      font-size: 5rem;
     }
   }
 }

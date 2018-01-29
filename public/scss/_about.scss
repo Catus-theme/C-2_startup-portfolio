@@ -2,10 +2,39 @@
   display: flex;
   white-space: nowrap;
   overflow-x: auto;
+  .bg-about-1 {
+    // background: linear-gradient(0deg, fade-out(#000, 0.9) 0%, fade-out(#000, 0.3) 100%);
+    // background-size: cover;
+    // background-position: center center;
+  }
+  .bg-about-2 {
+    background: linear-gradient(90deg, fade-out(#000, 0.9) 0%, fade-out(#000, 0.3) 100%), url('/public/img/bg-about-2.jpg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+  .bg-about-3 {
+    background:linear-gradient(180deg, fade-out(#000, 0.9) 0%, fade-out(#000, 0.3) 100%), url('/public/img/bg-about-3.jpg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
   .container {
     display: inline-block;
     min-width: 100% !important;
     max-width: 100% !important;
-    height: 100% !important;
+    padding: 7.5rem 0;
+    .row {
+      margin: 0;
+      h2 {
+        text-shadow: 2px 3px 5px #333;
+      }
+      h2,
+      p,
+      a {
+        color: #fff;
+      }
+    }
   }
+}
+.about-wrap.content-section {
+  padding: 0;
 }

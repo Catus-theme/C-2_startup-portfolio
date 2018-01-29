@@ -1,0 +1,18 @@
+mixin members(name , imgID , description)
+  - const MEMBERIMGSRC = 'public/img/member-' 
+  div.col-lg-4.col-md-6.mb-5.mb-lg-0
+    span.member-icon.rounded-circle.mx-auto.mb-3
+      img.rounded-circle(src=`${MEMBERIMGSRC}${imgID}.jpg`) 
+    h4
+      strong #{name} 
+    p.text-faded.mb-0 #{description} 
+
+section#member.content-section.bg-primary.text-white.text-center
+  div.container
+    div.content-section-heading
+      h3.text-secondary.mb-0 CATUS MEMBERS 
+      h2.mb-5 What Are You? 
+    div.row
+      +members('KAI' , '1' , '범접할 수 있는 개발자')
+      +members('ADAMS' , '4' , '미래에 순응하는 개발자')
+      +members('JNY' , '3' , '도전이 취미인 개발자')

@@ -1,34 +1,21 @@
-section#portfolio.content-section
+mixin portfolios(title , imgID , description)
+  - const PORTFOILOIMGSRC = 'public/img/portfolio-'
+  div.col-lg-6
+    a.portfolio-item(href="#")
+      span.caption
+        span.caption-content
+          h2 #{title} 
+          p.mb-0 #{description}
+      img.img-fluid.rounded(src=`${PORTFOILOIMGSRC}${imgID}.jpg` alt="")
+
+section#portfolio.content-section.portfolio
+  div.portfolio-cover
   div.container
     div.content-section-heading.text-center
       h3.text-secondary.mb-0 Portfolio
       h2.mb-5 Recent Projects
     div.row.no-gutters
-      div.col-lg-6
-        a.portfolio-item(href="#")
-          span.caption
-            span.caption-content
-              h2 Stationary
-              p.mb-0 A yellow pencil with envelopes on a clean, blue backdrop!
-          img.img-fluid(src="public/img/portfolio-1.jpg" alt="")
-      div.col-lg-6
-        a.portfolio-item(href="#")
-          span.caption
-            span.caption-content
-              h2 Ice Cream
-              p.mb-0 A dark blue background with a colored pencil, a clip, and a tiny ice cream cone!
-          img.img-fluid(src="public/img/portfolio-2.jpg" alt="")
-      div.col-lg-6
-        a.portfolio-item(href="#")
-          span.caption
-            span.caption-content
-              h2 Strawberries
-              p.mb-0 Strawberries are such a tasty snack, especially with a little sugar on top!
-          img.img-fluid(src="public/img/portfolio-3.jpg" alt="")
-      div.col-lg-6
-        a.portfolio-item(href="#")
-          span.caption
-            span.caption-content
-              h2 Workspace
-              p.mb-0 A yellow workspace with some scissors, pencils, and other objects.
-          img.img-fluid(src="public/img/portfolio-4.jpg" alt="")
+      +portfolios('title-1','1', '포트폴리오 내용을 입력해주세요.')
+      +portfolios('title-2','2', '포트폴리오 내용을 입력해주세요.')
+      +portfolios('title-3','4', '포트폴리오 내용을 입력해주세요.')
+      +portfolios('title-4','3', '포트폴리오 내용을 입력해주세요.')
